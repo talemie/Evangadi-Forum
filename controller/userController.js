@@ -2,7 +2,9 @@ const { emit } = require("process");
 const db = require("../db/dbConfig");
 const bcrypt = require("bcrypt");
 const { StatusCodes } = require("http-status-codes");
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+const secret = process.env.JWT_SECRET;
 
 // register
 async function register(req, res) {
@@ -79,7 +81,9 @@ async function login(req, res) {
         // token 
         const username = user[0].username
         const userid=user[0].userid
-        const token= jwt.sign({ username, userid },'secret',{expiresIn:'1d'});
+        const token = jwt.sign({ username, userid }, secret, {
+					expiresIn: "1d",
+				});
        return res.status(StatusCodes.OK).json({msg:'user logged in successfully',token})
 	} catch (error) {
 		console.log(error.message);

@@ -1,5 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const secret = process.env.JWT_SECRET;
 
 function authMiddleware(req, res, next) {
 	const authHeader = req.headers.authorization;
@@ -10,7 +12,7 @@ function authMiddleware(req, res, next) {
     }
     const token = authHeader.split(' ')[1]
 	try {
-        const { username, userid } = jwt.verify(token, "secret");
+        const { username, userid } = jwt.verify(token, secret);
         // create one user field in the request 
         req.user = { username, userid };
        next()
