@@ -25,6 +25,14 @@ async function addQuestion(req, res) {
 			.status(StatusCodes.BAD_REQUEST)
 			.json({ msg: "user needs to be lo logged first" });
 	}
+	// check if the question is already asked by checking the question id
+	const fetchQuestions = `SELECT * FROM questions where questionid=?`;
+	const [questions] = await db.query(fetchQuestions, [questionid]);
+	if (questions.length) {
+		return res
+			.status(StatusCodes.BAD_REQUEST)
+			.json({ msg: "Question Id must be unique" });
+	}
 	try {
 		const insertQuestion = `INSERT INTO questions (userid,questionid,title,description,tag) VALUES(?,?,?,?,?)`;
 		await db.query(insertQuestion, [
