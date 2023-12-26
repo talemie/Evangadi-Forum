@@ -1,9 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
 const db = require("../db/dbConfig");
+
+// fetch questions
 async function getQuestions(req, res) {
     // res.json({ msg: "all questions" });
     try {
-        const fetchQuestions = `SELECT * FROM questions`
+        const fetchQuestions = `SELECT * FROM questions order by id desc`
         const questions = await db.query(fetchQuestions)
         return res.status(StatusCodes.OK).json({questions:questions[0]})
     } catch (error) {
@@ -13,6 +15,8 @@ async function getQuestions(req, res) {
 					.json({ msg: "something went wrong, try again later!" });
     }
 }
+
+// add/ask questions
 async function addQuestion(req, res) {
 	const userid = req.user.userid;
 	const { questionid, title, description, tag } = req.body;

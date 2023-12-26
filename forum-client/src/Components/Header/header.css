@@ -1,0 +1,35 @@
+
+.main__nav{
+display: flex;
+justify-content: space-between;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+}
+.menu>div{
+   padding: 0 5px;
+}
+.menu>div:hover{
+    color: rgb(254, 132, 2);
+}
+.nav__header{
+    /* box-shadow: 0 6px 18px -9px rgba(0, 0, 0, 0.75); */
+    padding: 5px 40px;
+    margin-bottom: 10px;
+    /* z-index: 1; */
+}
+.navbar-toggler-icon{
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+}
+.signin{
+    background-color: rgb(21, 104, 228);
+    padding: 5px 40px;
+    border-radius: 5PX;
+    color: white;
+}
+.signin:hover{
+    background-color: rgb(254, 132, 2);
+}

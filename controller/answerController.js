@@ -5,8 +5,6 @@ const db = require("../db/dbConfig");
 async function addAnswer(req, res) {
     const { questionid,answer } = req.body;
     try {
-        // const fetchQuestion = `SELECT userid,questionid,title from questions where questionid=?`;
-        // const [question] = await db.query(fetchQuestion, [questionid]);
         const userId = req.user.userid
         const insertAnswer = `INSERT INTO answers (userid,questionid,answer) VALUES(?,?,?)`
         await db.query(insertAnswer,[userId,questionid,answer])
@@ -19,4 +17,20 @@ async function addAnswer(req, res) {
     }
     
 }
-module.exports = { addAnswer };
+
+// get answer
+async function getAnswer(req,res) {
+    const questionid = req.query.questionid
+    
+    try {
+        const selectAnswer = `select * from answers where questionid=?`
+        const [answer] = await db.query(selectAnswer, [questionid])
+        return res.status(StatusCodes.OK).json({answer})
+    } catch (error) {
+        console.log(error.message);
+				return res
+					.status(500)
+					.json({ msg: "something went wrong, try again later!" });
+    }
+}
+module.exports = { addAnswer, getAnswer };

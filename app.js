@@ -15,11 +15,13 @@ app.use(express.json())
 // user routes middleware
 app.use('/api/users',userRoutes)
 
-
 // question routes middleware
-app.use("/api/questions",authMiddleware, questionRoutes);
+app.use("/api/questions", authMiddleware, questionRoutes);
+
 // answers routes middleware
 app.use("/api/answers", authMiddleware, answerRoutes);
+
+
 
 // starting the servver and the db connection
 async function start() {
