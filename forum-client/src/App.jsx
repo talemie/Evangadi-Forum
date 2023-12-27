@@ -4,6 +4,7 @@ import Header from './Components/Header/Header'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from './Components/Home/Home';
 import Footer from './Components/Footer/Footer';
+import Test from './Components/Home/Test';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <>
       <Header />
       <Home />
+      {/* <Test/> */}
       <Footer/>
     </>
   )
