@@ -70,7 +70,7 @@ function Register({ handleLogging }) {
 							placeholder=" Password"
 							className="col-12 border border-gray-300 rounded-md mt-2 p-2"
 						/>
-						<span className="show-hide-button hover:text-orange-400">
+						<span className="show-hide-button hover:text-orange-400 opacity-50">
 							<VisibilityOffIcon onClick={togglePasswordVisibility} />
 						</span>
 					</div>
