@@ -1,24 +1,19 @@
-.login__section{
+.signup__section{
     background-color: white;
     padding: 20px;
-    box-shadow: 0 6px 18px -9px rgba(0, 0, 0, 0.75);
-    transition: transform 0.1s ease-in;
-    height: 480px;
+    height: 100%;
     width: 100%;
 }
-/* .login__head h2{
-    font-size: 1.4em;
-    font-weight:700 ;
-} */
 
-.account_check{
+
+/* .account_check{
     display: flex;
-}
+} */
 @media (max-width: 980px) {
-  /* CSS rules for screens with a width of 768 pixels or less */
-  .account_check{
+  /* CSS rules for screens with a width of 980 pixels or less */
+  /* .account_check{
     display: block;
-}
+} */
 }
 .password-input {
   position: relative;
