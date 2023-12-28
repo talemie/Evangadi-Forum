@@ -1,4 +1,5 @@
 const express = require('express')
+const cors=require('cors')
 const app=express()
 const port = 5500
 const userRoutes = require("./routes/userRoute");
@@ -9,7 +10,11 @@ const answerRoutes=require('./routes/answerRoute')
 const db=require('./db/dbConfig');
 const authMiddleware = require('./middleware/authMiddleware');
 
+// allowing cors middleware
+app.use(cors())
+
 // json middleware to extract json body data
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 // user routes middleware
