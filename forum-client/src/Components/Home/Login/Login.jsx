@@ -50,7 +50,7 @@ function Login({ toggleComponent }) {
 							<VisibilityOffIcon onClick={togglePasswordVisibility} />
 						</span>
 					</div>
-				</form>
+				
 				<Link to="#">
 					<h6 className="text-end text-orange-400 hover:underline pt-3">
 						Forgot password?
@@ -58,7 +58,8 @@ function Login({ toggleComponent }) {
 				</Link>
 				<button className="col-12 bg-blue-500 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded mt-5">
 					Login
-				</button>
+					</button>
+				</form>
 			</div>
 		</div>
 	);
