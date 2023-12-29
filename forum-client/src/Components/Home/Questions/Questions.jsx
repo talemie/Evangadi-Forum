@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import axios from "../../../CommonResources/axios";
+import { Link } from "react-router-dom";
 function Questions() {
-  const [questions, setQuestions] = useState("")
-  const token =
+	const [questions, setQuestions] = useState("");
+	const token =
 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsbWF6TSIsInVzZXJpZCI6NCwiaWF0IjoxNzAzODIyMzc0LCJleHAiOjE3MDM5MDg3NzR9.nkggJ2MiI6I1RyLgNjV8Fe2uk9KYwCvAhm03gUxUz88";
 	useEffect(() => {
 		const fetchQuestions = async () => {
 			try {
-        const response = await axios({
+				const response = await axios({
 					method: "GET",
 					url: `/questions/all-questions`,
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
-        });
-        console.log(response.data.questions);
-        setQuestions(response.data.questions);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchQuestions();
-	},[]);
+				});
+				console.log(response.data.questions);
+				setQuestions(response.data.questions);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchQuestions();
+	}, []);
 	return (
 		<div className="questions__wrapper bg-slate-100">
 			<div className="container py-3">
@@ -41,19 +43,21 @@ function Questions() {
 						className="w-full border border-gray-300 rounded-md p-3 "
 					/>
 				</div>
-				{questions.map((question, i) => (
-					<div
-						key={i}
-						className="each__question  border-t border-gray-300 pt-2 mt-4"
-					>
-						<div className="flex justify-items-end">
-							<div>
-								<AccountCircleIcon className="border-gray-300 " />
+				{questions?.map((question, i) => (
+					<Link to="#" key={i}>
+						<div className="each__question  border-t border-gray-300 py-4 hover:bg-slate-200">
+							<div className="flex justify-between ">
+								<div className="hover:text-black ">
+									<AccountCircleIcon className="material-icons w-6 h-6" />
+								</div>
+								<div>{question.title}</div>
+								<div>
+									<KeyboardArrowRightIcon />
+								</div>
 							</div>
-							<div>{question.title}</div>
+							<p>userName</p>
 						</div>
-						<p>userName</p>
-					</div>
+					</Link>
 				))}
 			</div>
 		</div>

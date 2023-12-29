@@ -68,7 +68,7 @@ function Login({ toggleComponent }) {
 				</div>
 			</div>
 			<div className="login__form">
-				{error && <div className="text-red-200">{error.msg}</div>}
+				{error && <div className="text-red-400">{error.msg}</div>}
 				<form onSubmit={handleLoginSubmit}>
 					<input
 						type="email"
