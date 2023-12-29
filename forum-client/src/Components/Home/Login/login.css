@@ -1,16 +1,9 @@
 .login__section{
     background-color: white;
     padding: 20px;
-    /* box-shadow: 0 6px 18px -9px rgba(0, 0, 0, 0.75); */
-    /* transition: transform 0.1s ease-in; */
     height: 480px;
     width: 100%;
 }
-/* .login__head h2{
-    font-size: 1.4em;
-    font-weight:700 ;
-} */
-
 .account_check{
     display: flex;
 }
