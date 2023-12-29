@@ -46,7 +46,7 @@ const createQuestion = `CREATE TABLE IF NOT EXISTS questions(
     title varchar(50) not null,
     description varchar(200) not null,
     tag varchar(20),
-    PRIMARY KEY(id,questionid)
+    PRIMARY KEY(id,questionid),
     FOREIGN KEY(userid) REFERENCES users(userid)
 )`;
 const createAnswers = `CREATE TABLE IF NOT EXISTS answers(
@@ -54,7 +54,7 @@ const createAnswers = `CREATE TABLE IF NOT EXISTS answers(
     userid INT(20) NOT NULL,
     questionid varchar(100) not null,
     answer varchar(200) not null,
-    PRIMARY KEY(answerid)
+    PRIMARY KEY(answerid),
     FOREIGN KEY(questionid) REFERENCES questions(questionid)
     FOREIGN KEY(userid) REFERENCES users(userid)
 )`;
