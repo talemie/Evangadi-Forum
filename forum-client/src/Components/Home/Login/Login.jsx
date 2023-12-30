@@ -3,12 +3,13 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "../../../CommonResources/axios.js";
+import { useStateValue } from "../../StateProvider/StateProvider.jsx";
 function Login({ toggleComponent }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const [token, setToken] = useState("")
+	const [token, setToken] = useStateValue();
 	const navigate = useNavigate();
 
 	const handleEmailChange = (event) => {
@@ -47,6 +48,7 @@ function Login({ toggleComponent }) {
 			setEmail("")
 			setPassword("")
 			// console.log(response.data.token);
+			setToken(response.data.token);
 			navigate("/questions");
 		} catch (error) {
 			setError(error.response.data);

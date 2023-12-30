@@ -7,7 +7,8 @@ const { v4: uuidv4 } = require("uuid");
 async function getQuestions(req, res) {
     // res.json({ msg: "all questions" });
     try {
-        const fetchQuestions = `SELECT * FROM questions order by id desc`
+		// const fetchQuestions = `SELECT * FROM questions order by id desc`
+		const fetchQuestions = `SELECT questions.*,users.username FROM questions left join users ON questions.userid=users.userid order by id desc`;
         const questions = await db.query(fetchQuestions)
         return res.status(StatusCodes.OK).json({questions:questions[0]})
     } catch (error) {

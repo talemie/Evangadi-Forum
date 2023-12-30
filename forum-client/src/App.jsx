@@ -4,7 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import Questions from "./Components/Home/Questions/Questions";
+import Questions from "./Components/Questions/Questions";
+import AskQuestion from "./Components/Questions/AskQuestion";
 
 function App() {
 	return (
@@ -25,7 +26,17 @@ function App() {
 					element={
 						<>
 							<Header />
-							<Questions/>
+							<Questions />
+							<Footer />
+						</>
+					}
+				/>
+				<Route
+					path="/ask"
+					element={
+						<>
+							<Header />
+							<AskQuestion />
 							<Footer />
 						</>
 					}
