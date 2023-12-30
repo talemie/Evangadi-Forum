@@ -1,5 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const db = require("../db/dbConfig");
+const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
 
 // fetch questions
 async function getQuestions(req, res) {
@@ -19,25 +21,25 @@ async function getQuestions(req, res) {
 // add/ask questions
 async function addQuestion(req, res) {
 	const userid = req.user.userid;
-	const { questionid, title, description, tag } = req.body;
+	const { title, description, tag } = req.body;
 	if (!userid) {
 		return res
 			.status(StatusCodes.BAD_REQUEST)
 			.json({ msg: "user needs to be lo logged first" });
 	}
-	// check if the question is already asked by checking the question id
-	const fetchQuestions = `SELECT * FROM questions where questionid=?`;
-	const [questions] = await db.query(fetchQuestions, [questionid]);
-	if (questions.length) {
-		return res
-			.status(StatusCodes.BAD_REQUEST)
-			.json({ msg: "Question Id must be unique" });
-	}
 	try {
+		// generating a random question id 
+		function generateRandomQuestionId() {
+			const randomBytes = crypto.randomBytes(16);
+			const uuid = uuidv4({ random: randomBytes });
+			return uuid;
+		}
+		const questionId = generateRandomQuestionId();
+
 		const insertQuestion = `INSERT INTO questions (userid,questionid,title,description,tag) VALUES(?,?,?,?,?)`;
 		await db.query(insertQuestion, [
 			userid,
-			questionid,
+			questionId,
 			title,
 			description,
 			tag,
