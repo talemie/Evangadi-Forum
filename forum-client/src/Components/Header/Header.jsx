@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 import SideMenu from "./SideMenu";
+import { useStateValue } from "../StateProvider/StateProvider";
 function Header() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const [token, setToken] = useStateValue();
 	useEffect(() => {
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth);
