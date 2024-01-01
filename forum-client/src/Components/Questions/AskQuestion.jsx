@@ -45,7 +45,7 @@ function AskQuestion() {
 				<h1 className="text-3xl p-2 pt-5">Steps To Write A Good Question</h1>
 				<div className="ml-6 mb-9">
 					<p className="p-1 text-2xl">
-						<ArrowCircleRightIcon /> Summerize your problems in a
+						<ArrowCircleRightIcon /> Summarize your problems in a
 						one-line-title.
 					</p>
 					<p className="p-1 text-2xl">
