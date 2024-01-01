@@ -4,7 +4,7 @@ const db = mysql2.createPool({
     user: "evangadiadmin",
     database: "evangadidb",
     host: 'localhost',
-    password:'Testme123',
+    password:'123456',
     connectionLimit:10
 })
 // db.execute('select "test"', (err, result) => {

@@ -23,7 +23,7 @@ async function getAnswer(req,res) {
     const questionid = req.query.questionid
     
     try {
-        const selectAnswer = `select * from answers where questionid=?`
+        const selectAnswer = `select answers.*, users.username from answers LEFT JOIN users on answers.userid=users.userid where questionid=?`
         const [answer] = await db.query(selectAnswer, [questionid])
         return res.status(StatusCodes.OK).json({answer})
     } catch (error) {
