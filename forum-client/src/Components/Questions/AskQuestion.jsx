@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import { useStateValue } from "../StateProvider/StateProvider";
 import axios from "../../CommonResources/axios.js";
 function AskQuestion() {
-	const [token, setToken] = useStateValue();
+	const token = localStorage.getItem("token");
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [error, setError] = useState("");
