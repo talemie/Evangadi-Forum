@@ -1,9 +1,15 @@
 const express = require("express");
-const { addQuestion, getQuestions } = require("../controller/questionController");
+const {
+	addQuestion,
+	getQuestions,
+	getSingleQuestion,
+} = require("../controller/questionController");
 const router = express.Router();
 
 // get all questions
 router.get("/all-questions", getQuestions);
+// get single question
+router.get("/question", getSingleQuestion);
 
 // add question
 

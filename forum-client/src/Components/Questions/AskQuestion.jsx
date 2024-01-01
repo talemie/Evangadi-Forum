@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import axios from "../../CommonResources/axios.js";
+import { useNavigate } from "react-router-dom";
 function AskQuestion() {
 	const token = localStorage.getItem("token");
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [error, setError] = useState("");
+	const navigate=useNavigate()
 	const onChangeTitle = (e) => {
 		setTitle(e.target.value);
 	};
@@ -34,6 +36,8 @@ function AskQuestion() {
 				},
 			});
 			console.log(response);
+			// navigate to questions page after question asked
+			navigate('/questions')
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);
@@ -45,7 +49,7 @@ function AskQuestion() {
 				<h1 className="text-3xl p-2 pt-5">Steps To Write A Good Question</h1>
 				<div className="ml-6 mb-9">
 					<p className="p-1 text-2xl">
-						<ArrowCircleRightIcon /> Summerize your problems in a
+						<ArrowCircleRightIcon /> Summarize your problems in a
 						one-line-title.
 					</p>
 					<p className="p-1 text-2xl">
