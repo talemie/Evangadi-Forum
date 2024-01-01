@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import axios from "../../CommonResources/axios.js";
+import { useNavigate } from "react-router-dom";
 function AskQuestion() {
 	const token = localStorage.getItem("token");
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [error, setError] = useState("");
+	const navigate=useNavigate()
 	const onChangeTitle = (e) => {
 		setTitle(e.target.value);
 	};
@@ -34,6 +36,8 @@ function AskQuestion() {
 				},
 			});
 			console.log(response);
+			// navigate to questions page after question asked
+			navigate('/questions')
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);

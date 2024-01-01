@@ -49,7 +49,7 @@ function Questions() {
 					/>
 				</div>
 				{questions?.map((question, i) => (
-					<Link to="#" key={i}>
+					<Link to={`/question/${question.questionid}`} key={i}>
 						<div className="each__question  border-t border-gray-300 py-4 hover:bg-slate-200">
 							<div className="flex justify-between pl-4">
 								<div className="hover:text-black ">

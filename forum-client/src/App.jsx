@@ -8,6 +8,7 @@ import Questions from "./Components/Questions/Questions";
 import AskQuestion from "./Components/Questions/AskQuestion";
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "./CommonResources/axios";
+import SingleQuestion from "./Components/Questions/SingleQuestion";
 // create context
 const AppStateContext = createContext();
 
@@ -32,7 +33,7 @@ function App() {
 		checkUser();
 	}, []);
 	return (
-		<AppStateContext.Provider value={[ user, setUser] }>
+		<AppStateContext.Provider value={[user, setUser]}>
 			<Routes>
 				<Route
 					path="/"
@@ -50,6 +51,17 @@ function App() {
 						<>
 							<Header />
 							<Questions />
+							<Footer />
+						</>
+					}
+				/>
+				{/* single question route */}
+				<Route
+					path="/question/:questionid"
+					element={
+						<>
+							<Header />
+							<SingleQuestion/>
 							<Footer />
 						</>
 					}
