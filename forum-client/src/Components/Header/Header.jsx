@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SideMenu from "./SideMenu";
-import { useStateValue } from "../StateProvider/StateProvider";
+
+
 function Header() {
+	const navigate = useNavigate();
+	const token = localStorage.getItem("token");
+	
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-	const [token, setToken] = useStateValue();
 	useEffect(() => {
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth);
@@ -17,25 +20,33 @@ function Header() {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-
+	const logingOut = () => {
+		localStorage.removeItem("token");
+		navigate('/')
+	};
 	return (
 		<div className="container mt-3 nav__header px-md-4">
 			<div className="main__nav">
 				<div className="">
-					<Link to='/'>
+					<Link to="/">
 						<img
-						src="https://forum.ibrodev.com/assets/evangadi-logo-5fea54cc.png"
-						alt=""
-					/>
+							src="https://forum.ibrodev.com/assets/evangadi-logo-5fea54cc.png"
+							alt=""
+						/>
 					</Link>
-					
 				</div>
 				{windowWidth > 990 ? (
 					<div className="menu ">
-						<div><Link to="#">Home</Link></div>
-						<div><Link to="#">How it works</Link></div>
 						<div>
-							<button className="signin">SIGN IN</button>
+							<Link to="#">Home</Link>
+						</div>
+						<div>
+							<Link to="#">How it works</Link>
+						</div>
+						<div>
+							<button className="signin" onClick={logingOut}>
+								{!token ? "SIGN IN" : "SIGN OUT"}
+							</button>
 						</div>
 					</div>
 				) : (

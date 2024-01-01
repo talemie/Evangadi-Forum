@@ -3,13 +3,11 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "../../../CommonResources/axios.js";
-import { useStateValue } from "../../StateProvider/StateProvider.jsx";
 function Login({ toggleComponent }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const [token, setToken] = useStateValue();
 	const navigate = useNavigate();
 
 	const handleEmailChange = (event) => {
@@ -34,7 +32,7 @@ function Login({ toggleComponent }) {
 
 		// sending login information to backend
 		try {
-			const response = await axios({
+			const {data} = await axios({
 				method: "POST",
 				url: "/users/login",
 				data: {
@@ -45,14 +43,14 @@ function Login({ toggleComponent }) {
 					"Content-Type": "application/json",
 				},
 			});
-			setEmail("")
-			setPassword("")
-			// console.log(response.data.token);
-			setToken(response.data.token);
+			// setEmail("")
+			// setPassword("")
+			console.log(data);
+			localStorage.setItem('token',data.token)
 			navigate("/questions");
 		} catch (error) {
 			setError(error.response.data);
-			// console.log(error.response.data);
+			console.log(error.response.data);
 		}
 	};
 	return (
