@@ -47,7 +47,7 @@ function Login({ toggleComponent }) {
 			// setPassword("")
 			console.log(data);
 			localStorage.setItem('token',data.token)
-			navigate("/questions");
+			navigate("/home");
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);

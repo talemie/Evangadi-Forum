@@ -46,7 +46,7 @@ function App() {
 					}
 				/>
 				<Route
-					path="/questions"
+					path="/home"
 					element={
 						<>
 							<Header />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../CommonResources/axios";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -7,10 +7,11 @@ function SingleQuestion() {
 	const [[question], setQuestion] = useState([]);
 	const [answer, setAnswer] = useState([]);
 	const [error, setError] = useState("");
-	const [yourAnswer, setYourAnswer] = useState("");
+    const [yourAnswer, setYourAnswer] = useState("");
+    const answerRef = useRef(null);
 	const token = localStorage.getItem("token");
 	const { questionid } = useParams();
-	console.log(answer);
+	// console.log(answer);
 	useEffect(() => {
 		const fetchQuestion = async () => {
 			try {
@@ -72,8 +73,9 @@ function SingleQuestion() {
                     questionid:questionid
                 }
 			});
-            console.log(response);
-            // setYourAnswer('');
+            // console.log(response);
+            // clearing the answer text area after submitting the answer
+            answerRef.current.value=''
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);
@@ -95,7 +97,7 @@ function SingleQuestion() {
 					</div>
 				</div>
 				<div className="my-4">
-					<h1 className="text-3xl text-center font-bold pb-3">
+					<h1 className="text-3xl  font-bold pb-3">
 						Answer From The Community
 					</h1>
 
@@ -120,7 +122,8 @@ function SingleQuestion() {
 						className={`w-full border border-black rounded-md p-3 my-2 ${
 							!yourAnswer && error ? "bg-red-200" : ""
 						}`}
-						name=""
+                        name=""
+                        ref={answerRef}
 						id=""
 						cols="100"
 						rows="5"
