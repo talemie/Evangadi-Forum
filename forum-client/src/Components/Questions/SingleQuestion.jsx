@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../CommonResources/axios";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { FaUserAlt } from "react-icons/fa";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 function SingleQuestion() {
 	const [[question], setQuestion] = useState([]);
 	const [answer, setAnswer] = useState([]);
 	const [error, setError] = useState("");
-	const [yourAnswer, setYourAnswer] = useState("");
+    const [yourAnswer, setYourAnswer] = useState("");
+    const answerRef = useRef(null);
 	const token = localStorage.getItem("token");
 	const { questionid } = useParams();
-	console.log(answer);
+	// console.log(answer);
 	useEffect(() => {
 		const fetchQuestion = async () => {
 			try {
@@ -72,8 +74,9 @@ function SingleQuestion() {
                     questionid:questionid
                 }
 			});
-            console.log(response);
-            // setYourAnswer('');
+            // console.log(response);
+            // clearing the answer text area after submitting the answer
+            answerRef.current.value=''
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);
@@ -95,7 +98,7 @@ function SingleQuestion() {
 					</div>
 				</div>
 				<div className="my-4">
-					<h1 className="text-3xl text-center font-bold pb-3">
+					<h1 className="text-3xl  font-bold pb-3">
 						Answer From The Community
 					</h1>
 
@@ -104,7 +107,7 @@ function SingleQuestion() {
 							<div key={i} className="   py-4 hover:bg-slate-200">
 								<div className="flex justify-between pl-4 mx-3 border-b border-gray-300">
 									<div className="hover:text-black  mr-4 ">
-										<AccountCircleIcon className="user__icon " />
+										<FaUserAlt className="text-6xl border border-black rounded-full p-2 hover:bg-black hover:text-white " />
 										<br />
 										<p className="">{item.username}</p>
 									</div>
@@ -121,6 +124,7 @@ function SingleQuestion() {
 							!yourAnswer && error ? "bg-red-200" : ""
 						}`}
 						name=""
+						ref={answerRef}
 						id=""
 						cols="100"
 						rows="5"

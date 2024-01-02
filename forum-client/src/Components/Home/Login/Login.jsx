@@ -43,11 +43,9 @@ function Login({ toggleComponent }) {
 					"Content-Type": "application/json",
 				},
 			});
-			// setEmail("")
-			// setPassword("")
-			console.log(data);
+			// console.log(data);
 			localStorage.setItem('token',data.token)
-			navigate("/questions");
+			navigate("/home");
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);

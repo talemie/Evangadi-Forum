@@ -61,7 +61,7 @@ function Register({ toggleComponent }) {
 					"Content-Type": "application/json", 
 				},
 			});
-			navigate("/questions");
+			navigate("/home");
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);

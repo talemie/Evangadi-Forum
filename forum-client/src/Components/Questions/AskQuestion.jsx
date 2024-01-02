@@ -37,7 +37,7 @@ function AskQuestion() {
 			});
 			console.log(response);
 			// navigate to questions page after question asked
-			navigate('/questions')
+			navigate('/home')
 		} catch (error) {
 			setError(error.response.data);
 			console.log(error.response.data);

@@ -28,7 +28,7 @@ function Header() {
 		<div className="container mt-3 nav__header px-md-4">
 			<div className="main__nav">
 				<div className="">
-					<Link to="/">
+					<Link to="/home">
 						<img
 							src="https://forum.ibrodev.com/assets/evangadi-logo-5fea54cc.png"
 							alt=""
