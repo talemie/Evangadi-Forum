@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./question.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { FaUserAlt } from "react-icons/fa";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { MdNavigateNext } from "react-icons/md";
 import axios from "../../CommonResources/axios";
 import { Link } from "react-router-dom";
 import { useAppStateValue } from "../../App";
@@ -28,7 +30,6 @@ function Questions() {
 		};
 		fetchQuestions();
 	}, []);
-	console.log("Fetched questions ", questions);
 	return (
 		<div className="questions__wrapper bg-slate-100">
 			<div className="container py-3">
@@ -52,22 +53,19 @@ function Questions() {
 				</div>
 				{questions?.map((question, i) => (
 					<Link to={`/question/${question.questionid}`} key={i}>
-						<div className="each__question  border-t border-gray-300 py-4 hover:bg-slate-200">
-							<div className="flex justify-between pl-4">
+						<div className="each__question  border-t border-gray-300 py-4 hover:bg-slate-200 ">
+							<div className="flex justify-between pl-4 mb-4">
 								<div className="flex justify-between">
 									<div className="hover:text-black w-8 h-8 mr-10">
-										<AccountCircleIcon
-											className=" "
-											style={{ fontSize: "2rem" }}
-										/>
+										<FaUserAlt className="text-6xl border border-black rounded-full p-2 hover:bg-black hover:text-white " />
 									</div>
 									<div className="ml-10">{question.title}</div>
 								</div>
 								<div>
-									<KeyboardArrowRightIcon className="" />
+									<MdNavigateNext className="text-4xl" />
 								</div>
 							</div>
-							<p className="pl-4">{question.username}</p>
+							<p className="pl-4 ml-3 pt-2">{question.username}</p>
 						</div>
 					</Link>
 				))}

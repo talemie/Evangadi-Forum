@@ -43,9 +43,7 @@ function Login({ toggleComponent }) {
 					"Content-Type": "application/json",
 				},
 			});
-			// setEmail("")
-			// setPassword("")
-			console.log(data);
+			// console.log(data);
 			localStorage.setItem('token',data.token)
 			navigate("/home");
 		} catch (error) {
