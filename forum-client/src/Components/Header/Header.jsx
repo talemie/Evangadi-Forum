@@ -1,14 +1,10 @@
+//Header component
 import React, { useEffect, useState } from "react";
-import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
-import SideMenu from "./SideMenu";
-
-
+import { Link } from "react-router-dom";
+import MiniSideMenu from "./MiniSideMenu";
 function Header() {
-	const navigate = useNavigate();
-	const token = localStorage.getItem("token");
-	
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const token = localStorage.getItem("token");
 	useEffect(() => {
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth);
@@ -20,39 +16,40 @@ function Header() {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-	console.log(windowWidth);
+	// console.log(windowWidth);
 	const logingOut = () => {
 		localStorage.removeItem("token");
-		navigate('/')
+		navigate("/");
 	};
 	return (
-		<div className="container mt-3 nav__header px-md-4">
-			<div className="main__nav">
-				<div className="">
-					<Link to="/home">
-						<img
-							src="https://forum.ibrodev.com/assets/evangadi-logo-5fea54cc.png"
-							alt=""
-						/>
-					</Link>
-				</div>
+		<div className="bg-white w-full px-20 fixed top-0 left-0  shadow z-10">
+			<div className="  flex justify-between   py-7 ">
+				<Link to="/home">
+					<img
+						className="max-w-none"
+						src="https://www.evangadi.com/themes/humans//assets/images/misc/evangadi-logo-home.png"
+						alt="Evangadi Logo"
+					/>
+				</Link>
 				{windowWidth > 990 ? (
-					<div className="menu ">
-						<div>
-							<Link to="#">Home</Link>
-						</div>
-						<div>
-							<Link to="#">How it works</Link>
-						</div>
-						<div>
-							<button className="signin" onClick={logingOut}>
-								{!token ? "SIGN IN" : "SIGN OUT"}
-							</button>
-						</div>
+					<div className=" flex space-x-6 mr-20">
+						<Link className=" hover:text-orange-500 py-2" to="/Home">
+							Home
+						</Link>
+						<Link className=" hover:text-orange-500 py-2" to="/explained">
+							How it Works{" "}
+						</Link>
+						<Link
+							className={`py-2 ' ${token?' hover:text-orange-500':'hover:bg-orange-500 text-white  px-20   rounded-md border border-gray-600 bg-blue-600'} `}
+							to="/sign in"
+							onClick={logingOut}
+						>
+							{!token ? "SIGN IN" : "LOG OUT"}
+						</Link>
 					</div>
 				) : (
 					<div>
-						<SideMenu />
+						<MiniSideMenu />
 					</div>
 				)}
 			</div>
