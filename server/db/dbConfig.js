@@ -1,36 +1,19 @@
 const mysql2 = require("mysql2");
+require("dotenv").config();
 // db connection
 const db = mysql2.createPool({
-    user: "evangadiadmin",
-    database: "evangadidb",
-    host: 'localhost',
-    password:'123456',
-    connectionLimit:10
-})
-// db.execute('select "test"', (err, result) => {
-//     if (err) {
-//         console.log(err.message);
-//     } else {
-//         console.log(result);
-//     }
-// })
+	user: process.env.USER,
+	database: process.env.DATABASE,
+	host: process.env.HOST,
+	password: process.env.PASSWORD,
+	connectionLimit: process.env.LIMIT,
+});
 
 module.exports = db.promise();
 
-
-
-
-
-
-
-
-
-
-
-
 // ------------------------------------------------------------------------------
 // table creation queries
-const createUser =`CREATE TABLE IF NOT EXISTS users(
+const createUser = `CREATE TABLE IF NOT EXISTS users(
     userid INT(20) NOT NULL auto_increment,
     username varchar(20) not null,
     firstname varchar(20) not null,
@@ -38,7 +21,7 @@ const createUser =`CREATE TABLE IF NOT EXISTS users(
     email varchar(40) not null,
     password varchar(100) not null,
     PRIMARY KEY(userid)
-)`
+)`;
 const createQuestion = `CREATE TABLE IF NOT EXISTS questions(
     id INT(20) NOT NULL auto_increment,
     questionid varchar(100) not null unique,
