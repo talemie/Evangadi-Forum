@@ -13,6 +13,21 @@ function SingleQuestion() {
 	const token = localStorage.getItem("token");
 	const { questionid } = useParams();
 	// console.log(answer);
+	const fetchAnswer = async () => {
+		try {
+			const { data } = await axios({
+				method: "GET",
+				url: `/answers/get-answer?questionid=${questionid}`,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			setAnswer(data.answer);
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
 	useEffect(() => {
 		const fetchQuestion = async () => {
 			try {
@@ -29,25 +44,9 @@ function SingleQuestion() {
 				console.log(error);
 			}
 		};
-		const fetchAnswer = async () => {
-			try {
-				const { data } = await axios({
-					method: "GET",
-					url: `/answers/get-answer?questionid=${questionid}`,
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				});
-
-				setAnswer(data.answer);
-			} catch (error) {
-				console.log(error.response);
-			}
-		};
-
 		fetchQuestion();
 		fetchAnswer();
-	}, [answer]);
+	}, []);
 	const onchangeAnswer = (e) => {
 		setYourAnswer(e.target.value);
 	};
@@ -74,7 +73,7 @@ function SingleQuestion() {
                     questionid:questionid
                 }
 			});
-            // console.log(response);
+			fetchAnswer();
             // clearing the answer text area after submitting the answer
             answerRef.current.value=''
 		} catch (error) {
@@ -102,7 +101,7 @@ function SingleQuestion() {
 						Answer From The Community
 					</h1>
 
-					<div className="bg-slate-200">
+					<div className="bg-slate-200 max-h-64  overflow-y-auto">
 						{answer?.map((item, i) => (
 							<div key={i} className="   py-4 hover:bg-slate-200">
 								<div className="flex justify-between pl-4 mx-3 border-b border-gray-300">

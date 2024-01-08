@@ -44,6 +44,11 @@ async function addQuestion(req, res) {
 			.status(StatusCodes.BAD_REQUEST)
 			.json({ msg: "user needs to be lo logged first" });
 	}
+	if (!title||!description) {
+		return res
+			.status(StatusCodes.BAD_REQUEST)
+			.json({ msg: "All fields required" });
+	}
 	try {
 		// generating a random question id 
 		function generateRandomQuestionId() {
