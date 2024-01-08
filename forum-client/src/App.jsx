@@ -1,21 +1,21 @@
-import "./App.css";
-import Header from "./Components/Header/Header";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
+import "./App.css";
+import Home from "./Pages/Home/Home";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Questions from "./Components/Questions/Questions";
-import AskQuestion from "./Components/Questions/AskQuestion";
+import Landing from "./Pages/Landing/Landing";
+import Header from "./Components/Header/Header";
+import SingleQuestion from "./Pages/SingleQuestion/SingleQuestion";
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "./CommonResources/axios";
-import SingleQuestion from "./Components/Questions/SingleQuestion";
+import AskQuestion from "./Pages/AskQuestion/AskQuestion";
 // create context
 const AppStateContext = createContext();
-
 function App() {
 	const [user, setUser] = useState();
 	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
+
+	// checking the user on every page to protect the route functionality
 	const checkUser = async () => {
 		try {
 			const { data } = await axios.get("/users/check", {
@@ -32,6 +32,7 @@ function App() {
 	useEffect(() => {
 		checkUser();
 	}, []);
+
 	return (
 		<AppStateContext.Provider value={[user, setUser]}>
 			<Routes>
@@ -40,7 +41,7 @@ function App() {
 					element={
 						<>
 							<Header />
-							<Home />
+							<Landing />
 							<Footer />
 						</>
 					}
@@ -50,7 +51,7 @@ function App() {
 					element={
 						<>
 							<Header />
-							<Questions />
+							<Home />
 							<Footer />
 						</>
 					}
@@ -61,13 +62,13 @@ function App() {
 					element={
 						<>
 							<Header />
-							<SingleQuestion/>
+							<SingleQuestion />
 							<Footer />
 						</>
 					}
 				/>
 				<Route
-					path="/ask"
+					path="/ask-question"
 					element={
 						<>
 							<Header />
@@ -80,5 +81,5 @@ function App() {
 		</AppStateContext.Provider>
 	);
 }
-export const useAppStateValue = () => (useContext(AppStateContext));
+export const useAppStateValue = () => useContext(AppStateContext);
 export default App;
