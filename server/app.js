@@ -40,11 +40,4 @@ async function start() {
 }
 
 start();
-// listening
-// app.listen(port, (err) => {
-//     if (err) {
-//         console.log(err.message);
-//     } else {
-//         console.log(`App listening on : http://localhost:${port}`);
-//     }
-// })
+

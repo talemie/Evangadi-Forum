@@ -1,9 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
 const db = require("../db/dbConfig");
 
+// post answer
 async function addAnswer(req, res) {
 	const { answer } = req.body;
 	const { questionid } = req.query;
+	
 	try {
 		const userId = req.user.userid;
 		const insertAnswer = `INSERT INTO answers (userid,questionid,answer) VALUES(?,?,?)`;

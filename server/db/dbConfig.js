@@ -9,9 +9,10 @@ const db = mysql2.createPool({
 	connectionLimit: process.env.LIMIT,
 });
 
+
 module.exports = db.promise();
 
-// ------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // table creation queries
 const createUser = `CREATE TABLE IF NOT EXISTS users(
     userid INT(20) NOT NULL auto_increment,
