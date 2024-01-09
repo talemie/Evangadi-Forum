@@ -10,7 +10,6 @@ const db = mysql2.createPool({
 	connectionLimit: process.env.LIMIT,
 });
 
-
 module.exports = db.promise();
 
 // -----------------------------------------------------------------------------
