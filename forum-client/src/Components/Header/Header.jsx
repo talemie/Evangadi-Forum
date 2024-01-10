@@ -19,6 +19,7 @@ function Header() {
 	// console.log(windowWidth);
 	const logingOut = () => {
 		localStorage.removeItem("token");
+		localStorage.removeItem("username");
 		navigate("/");
 	};
 	return (
