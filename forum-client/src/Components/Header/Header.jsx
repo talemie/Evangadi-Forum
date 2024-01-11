@@ -34,14 +34,18 @@ function Header() {
 				</Link>
 				{windowWidth > 990 ? (
 					<div className=" flex space-x-6 mr-20">
-						<Link className=" hover:text-orange-500 py-2" to="/Home">
+						<Link className=" hover:text-orange-500 py-2" to={token&&`/home`}>
 							Home
 						</Link>
 						<Link className=" hover:text-orange-500 py-2" to="/explained">
 							How it Works{" "}
 						</Link>
 						<Link
-							className={`py-2 ' ${token?' hover:text-orange-500':'hover:bg-orange-500 text-white  px-20   rounded-md border border-gray-600 bg-blue-600'} `}
+							className={`py-2 ' ${
+								token
+									? " hover:text-orange-500"
+									: "hover:bg-orange-500 text-white  px-20   rounded-md border border-gray-600 bg-blue-600"
+							} `}
 							to="/sign in"
 							onClick={logingOut}
 						>
